@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #e8f5e9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .results {
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table th, table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        table th {
+            background-color: #3f51b5;
+            color: white;
+            font-weight: 600;
+        }
+        table td {
+            font-weight: 400;
+        }
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        button {
+            margin-top: 20px;
+            display: block;
+            width: 100%;
+            background: linear-gradient(45deg, #4caf50, #8bc34a);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background: linear-gradient(45deg, #388e3c, #689f38);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Analysis Results</h1>
+        <div class="results">
+            <h2>Products per Supplier</h2>
+            <table>
+                <tr>
+                    <th>Supplier</th>
+                    <th>Number of Products</th>
+                </tr>
+                {% for supplier, count in products_per_supplier.items() %}
+                <tr>
+                    <td>{{ supplier }}</td>
+                    <td>{{ count }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+            <h2>Total Value per Supplier</h2>
+            <table>
+                <tr>
+                    <th>Supplier</th>
+                    <th>Total Value</th>
+                </tr>
+                {% for supplier, total in total_value_per_supplier.items() %}
+                <tr>
+                    <td>{{ supplier }}</td>
+                    <td>${{ "%.2f" | format(total) }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <button onclick="window.location.href='/'">Go Back</button>
+    </div>
+</body>
+</html>
